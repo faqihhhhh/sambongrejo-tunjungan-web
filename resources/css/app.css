@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────── */
+/*  CSS Custom Properties — Skema Warna Blora      */
+/* ─────────────────────────────────────────────── */
+:root {
+  --blora-green-dark: #064E3B;
+  --blora-green:      #059669;
+  --blora-gold:       #D97706;
+  --blora-red:        #E11D48;
+  --blora-blue:       #2563EB;
+  --blora-cream:      #F8FAFC;
+  --blora-text:       #0F172A;
+}
+
+/* ─────────────────────────────────────────────── */
+/*  Base                                           */
+/* ─────────────────────────────────────────────── */
+@layer base {
+  html {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--blora-text);
+    background-color: var(--blora-cream);
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    color: var(--blora-green-dark);
+    letter-spacing: -0.02em;
+  }
+
+  a {
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: var(--blora-green);
+  }
+}
+
+/* ─────────────────────────────────────────────── */
+/*  Components                                     */
+/* ─────────────────────────────────────────────── */
+@layer components {
+
+  /* Tombol utama (hijau tua) */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-blora-green-dark text-white font-semibold text-sm rounded-lg shadow-sm transition-all duration-300;
+  }
+  .btn-primary:hover {
+    @apply bg-blora-green shadow hover:-translate-y-0.5;
+  }
+
+  /* Tombol sekunder (modern outline) */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 border border-gray-200 text-blora-text font-semibold text-sm rounded-lg shadow-sm transition-all duration-300 bg-white;
+  }
+  .btn-secondary:hover {
+    @apply bg-gray-50 text-blora-green-dark border-gray-300 hover:-translate-y-0.5;
+  }
+
+  /* Tombol merah (penting/darurat) */
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-blora-red text-white font-semibold text-sm rounded-lg shadow-sm transition-all duration-300;
+  }
+  .btn-danger:hover {
+    @apply bg-rose-600 shadow hover:-translate-y-0.5;
+  }
+
+  /* Badge kategori */
+  .badge-kategori {
+    @apply inline-block px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest rounded-md bg-emerald-50 text-blora-green-dark;
+  }
+
+  .badge-penting {
+    @apply inline-block px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest rounded-md bg-rose-50 text-blora-red;
+  }
+
+  /* Header Pemerintahan */
+  .header-gov {
+    @apply bg-blora-green-dark text-white border-b border-white/10;
+  }
+
+  /* Card Berita */
+  .card-berita {
+    @apply bg-white rounded-lg overflow-hidden transition-all duration-300 shadow-sm border border-transparent;
+  }
+  .card-berita:hover {
+    @apply shadow-md border-gray-100;
+  }
+
+  /* Section title */
+  .section-title {
+    @apply text-2xl md:text-3xl font-extrabold tracking-tight text-blora-text mb-1;
+  }
+  .section-title-underline {
+    @apply block w-12 h-1.5 bg-blora-green mt-3 mb-8 rounded-full;
+  }
+
+  /* Running text wrapper */
+  .running-text-wrapper {
+    background-color: var(--blora-green-dark);
+    @apply text-white text-sm py-2 border-t border-white/5;
+  }
+
+  /* Quick access tile */
+  .quick-access-tile {
+    @apply flex flex-col items-center justify-center p-6 bg-white rounded-xl text-center transition-all duration-300 shadow-sm border border-gray-100;
+  }
+  .quick-access-tile:hover {
+    @apply shadow-lg border-blora-green/20 -translate-y-1;
+  }
+
+  /* Admin sidebar */
+  .admin-sidebar {
+    @apply w-64 min-h-screen bg-blora-green-dark text-white flex flex-col;
+  }
+
+  /* Admin nav item */
+  .admin-nav-item {
+    @apply flex items-center gap-3 px-4 py-2.5 text-sm text-green-100 rounded transition-all duration-150;
+  }
+  .admin-nav-item:hover, .admin-nav-item.active {
+    @apply bg-blora-green text-white;
+  }
+
+  /* Form input */
+  .form-input-gov {
+    @apply w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:border-blora-green focus:ring-1 focus:ring-blora-green transition-all;
+  }
+
+  /* Table */
+  .table-gov {
+    @apply w-full text-sm;
+  }
+  .table-gov th {
+    @apply bg-gray-50 text-gray-500 text-xs uppercase tracking-wider px-4 py-3 text-left font-semibold border-b border-gray-200;
+  }
+  .table-gov td {
+    @apply px-4 py-4 border-b border-gray-100 transition-colors;
+  }
+  .table-gov tr:hover td {
+    @apply bg-gray-50;
+  }
+
+  /* Page hero */
+  .page-hero {
+    @apply relative py-12 md:py-20 text-white shadow-inner;
+    background-color: var(--blora-green-dark);
+    background-image: linear-gradient(135deg, var(--blora-green-dark) 0%, var(--blora-green) 100%);
+  }
+
+  /* Footer */
+  .site-footer {
+    @apply bg-blora-green-dark text-green-100;
+    border-top: 4px solid var(--blora-gold);
+  }
+}
+
+/* ─────────────────────────────────────────────── */
+/*  Running text marquee animation                 */
+/* ─────────────────────────────────────────────── */
+@keyframes marquee {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+.marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: marquee 30s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ─────────────────────────────────────────────── */
+/*  Banner slider                                  */
+/* ─────────────────────────────────────────────── */
+.slider-container {
+  position: relative;
+  overflow: hidden;
+}
+.slide {
+  display: none;
+  animation: fadeIn 0.5s ease-in-out;
+}
+.slide.active {
+  display: block;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ─────────────────────────────────────────────── */
+/*  Utilities                                      */
+/* ─────────────────────────────────────────────── */
+@layer utilities {
+  .text-shadow-sm {
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+}
