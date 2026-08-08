@@ -33,7 +33,7 @@
         </div>
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Deskripsi</label>
-            <textarea name="deskripsi" rows="4" class="form-input-gov">{{ old('deskripsi', $agenda->deskripsi ?? '') }}</textarea>
+            <textarea name="deskripsi" rows="4" class="form-input-gov wysiwyg">{{ old('deskripsi', $agenda->deskripsi ?? '') }}</textarea>
         </div>
         <div class="flex gap-3 pt-4 border-t border-gray-100">
             <button type="submit" class="btn-primary">{{ isset($agenda) ? 'Simpan Perubahan' : 'Tambah Agenda' }}</button>

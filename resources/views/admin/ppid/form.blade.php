@@ -24,7 +24,7 @@
         </div>
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Isi / Keterangan</label>
-            <textarea name="isi" rows="5" class="form-input-gov">{{ old('isi', $ppid->isi ?? '') }}</textarea>
+            <textarea name="isi" rows="5" class="form-input-gov wysiwyg">{{ old('isi', $ppid->isi ?? '') }}</textarea>
         </div>
         <div class="grid grid-cols-2 gap-4">
             <div>

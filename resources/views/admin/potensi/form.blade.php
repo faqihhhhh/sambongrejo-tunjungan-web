@@ -24,7 +24,7 @@
         </div>
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Deskripsi</label>
-            <textarea name="deskripsi" rows="4" class="form-input-gov">{{ old('deskripsi', $potensi->deskripsi ?? '') }}</textarea>
+            <textarea name="deskripsi" rows="4" class="form-input-gov wysiwyg">{{ old('deskripsi', $potensi->deskripsi ?? '') }}</textarea>
         </div>
         <div class="grid grid-cols-2 gap-4">
             <div>

@@ -33,11 +33,11 @@
             <div class="space-y-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Sambutan Singkat (tampil di beranda)</label>
-                    <textarea name="sambutan_singkat" rows="3" class="form-input-gov">{{ old('sambutan_singkat', $profile->sambutan_singkat ?? '') }}</textarea>
+                    <textarea name="sambutan_singkat" rows="3" class="form-input-gov wysiwyg">{{ old('sambutan_singkat', $profile->sambutan_singkat ?? '') }}</textarea>
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Sambutan Lengkap (halaman profil)</label>
-                    <textarea name="sambutan_lengkap" rows="8" class="form-input-gov" id="sambutan_lengkap">{{ old('sambutan_lengkap', $profile->sambutan_lengkap ?? '') }}</textarea>
+                    <textarea name="sambutan_lengkap" rows="8" class="form-input-gov wysiwyg">{{ old('sambutan_lengkap', $profile->sambutan_lengkap ?? '') }}</textarea>
                 </div>
             </div>
         </div>
@@ -48,15 +48,15 @@
             <div class="space-y-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Sejarah Desa</label>
-                    <textarea name="sejarah" rows="8" class="form-input-gov" id="sejarah">{{ old('sejarah', $profile->sejarah ?? '') }}</textarea>
+                    <textarea name="sejarah" rows="8" class="form-input-gov wysiwyg">{{ old('sejarah', $profile->sejarah ?? '') }}</textarea>
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Visi</label>
                     <input type="text" name="visi" value="{{ old('visi', $profile->visi ?? '') }}" class="form-input-gov">
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Misi (boleh HTML list)</label>
-                    <textarea name="misi" rows="6" class="form-input-gov font-mono text-xs">{{ old('misi', $profile->misi ?? '') }}</textarea>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Misi</label>
+                    <textarea name="misi" rows="6" class="form-input-gov wysiwyg">{{ old('misi', $profile->misi ?? '') }}</textarea>
                 </div>
             </div>
         </div>

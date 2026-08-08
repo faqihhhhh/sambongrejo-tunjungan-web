@@ -53,8 +53,7 @@
 
         <div class="bg-white rounded-lg border border-gray-200 p-6">
             <label class="block text-sm font-medium text-gray-700 mb-2">Isi Berita *</label>
-            <textarea name="isi" rows="16" class="form-input-gov font-mono text-sm" id="isi" required>{{ old('isi', $news->isi ?? '') }}</textarea>
-            <p class="text-xs text-gray-400 mt-1">Mendukung HTML sederhana: &lt;p&gt;, &lt;b&gt;, &lt;i&gt;, &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;, &lt;h3&gt;</p>
+            <textarea name="isi" rows="16" class="form-input-gov wysiwyg" id="isi" required>{{ old('isi', $news->isi ?? '') }}</textarea>
         </div>
 
         <div class="flex gap-3">

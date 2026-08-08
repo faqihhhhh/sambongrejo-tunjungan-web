@@ -24,11 +24,11 @@
         </div>
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Deskripsi Layanan</label>
-            <textarea name="deskripsi" rows="3" class="form-input-gov">{{ old('deskripsi', $layanan->deskripsi ?? '') }}</textarea>
+            <textarea name="deskripsi" rows="3" class="form-input-gov wysiwyg">{{ old('deskripsi', $layanan->deskripsi ?? '') }}</textarea>
         </div>
         <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Persyaratan (boleh HTML &lt;ul&gt;&lt;li&gt;)</label>
-            <textarea name="syarat" rows="6" class="form-input-gov font-mono text-xs">{{ old('syarat', $layanan->syarat ?? '') }}</textarea>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Persyaratan</label>
+            <textarea name="syarat" rows="6" class="form-input-gov wysiwyg">{{ old('syarat', $layanan->syarat ?? '') }}</textarea>
         </div>
         <div class="grid grid-cols-2 gap-4">
             <div>

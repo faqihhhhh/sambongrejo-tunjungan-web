@@ -216,6 +216,114 @@
 </div>
 
 @stack('admin-scripts')
+
+{{-- Quill.js — WYSIWYG Editor 100% Gratis (MIT License) --}}
+<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('textarea.wysiwyg').forEach(function (textarea) {
+
+            // ── 1. Buat wrapper & container editor ──
+            const wrapper = document.createElement('div');
+            wrapper.className = 'quill-wrapper';
+
+            const editorDiv = document.createElement('div');
+            wrapper.appendChild(editorDiv);
+
+            // Pesan error (tersembunyi dulu)
+            const errorMsg = document.createElement('p');
+            errorMsg.className = 'quill-error-msg';
+            errorMsg.style.cssText = 'display:none;color:#dc2626;font-size:0.75rem;margin-top:4px;';
+            errorMsg.textContent = 'Kolom ini wajib diisi.';
+            wrapper.appendChild(errorMsg);
+
+            // Sembunyikan textarea asli (tapi tetap di DOM agar nilai terkirim)
+            textarea.style.display = 'none';
+            textarea.removeAttribute('required'); // ← Kunci utama: hapus required agar browser tidak blokir submit
+            textarea.parentNode.insertBefore(wrapper, textarea);
+
+            // ── 2. Inisialisasi Quill ──
+            const quill = new Quill(editorDiv, {
+                theme: 'snow',
+                placeholder: 'Ketik isi konten di sini...',
+                modules: {
+                    toolbar: [
+                        [{ 'header': [1, 2, 3, false] }],
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{ 'color': [] }, { 'background': [] }],
+                        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                        [{ 'indent': '-1' }, { 'indent': '+1' }],
+                        [{ 'align': [] }],
+                        ['link', 'image'],
+                        ['blockquote'],
+                        ['clean']
+                    ]
+                }
+            });
+
+            // ── 3. Isi editor dari nilai textarea yang sudah ada (mode edit) ──
+            if (textarea.value.trim()) {
+                quill.root.innerHTML = textarea.value;
+            }
+
+            // Hapus pesan error saat user mulai mengetik
+            quill.on('text-change', function () {
+                errorMsg.style.display = 'none';
+                editorDiv.querySelector('.ql-container').style.borderColor = '#d1d5db';
+            });
+
+            // ── 4. Sync & Validasi sebelum form submit ──
+            const form = textarea.closest('form');
+            form.addEventListener('submit', function (e) {
+                const isiKonten = quill.getText().trim();
+
+                if (!isiKonten) {
+                    // Blokir submit jika editor kosong
+                    e.preventDefault();
+                    errorMsg.style.display = 'block';
+                    editorDiv.querySelector('.ql-container').style.borderColor = '#dc2626';
+                    // Scroll ke editor
+                    wrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return;
+                }
+
+                // Salin konten HTML dari Quill ke textarea sebelum dikirim
+                textarea.value = quill.root.innerHTML;
+            });
+
+            // ── 5. Style editor ──
+            const qlEditor = editorDiv.querySelector('.ql-editor');
+            qlEditor.style.minHeight = '300px';
+            qlEditor.style.fontSize = '14px';
+            qlEditor.style.fontFamily = 'Inter, Arial, sans-serif';
+            qlEditor.style.lineHeight = '1.7';
+        });
+    });
+</script>
+<style>
+    /* Styling Quill agar sesuai tampilan admin */
+    .ql-toolbar.ql-snow {
+        border: 1px solid #d1d5db;
+        border-radius: 0.375rem 0.375rem 0 0;
+        background: #f9fafb;
+        font-family: Inter, Arial, sans-serif;
+    }
+    .ql-container.ql-snow {
+        border: 1px solid #d1d5db;
+        border-top: 0;
+        border-radius: 0 0 0.375rem 0.375rem;
+        background: #fff;
+    }
+    .ql-editor {
+        min-height: 300px;
+    }
+    .ql-editor.ql-blank::before {
+        color: #9ca3af;
+        font-style: normal;
+    }
+</style>
+
 <script>
     function openSidebar() {
         document.getElementById('sidebar').classList.remove('-translate-x-full');
