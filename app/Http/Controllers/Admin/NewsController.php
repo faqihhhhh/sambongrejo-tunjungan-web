@@ -68,7 +68,9 @@ class NewsController extends Controller
         ]);
 
         if ($request->hasFile('foto')) {
-            Storage::disk('public')->delete($news->foto);
+            if ($news->foto) {
+                Storage::disk('public')->delete($news->foto);
+            }
             $validated['foto'] = $request->file('foto')->store('news', 'public');
         }
 
@@ -82,7 +84,9 @@ class NewsController extends Controller
 
     public function destroy(News $news)
     {
-        Storage::disk('public')->delete($news->foto);
+        if ($news->foto) {
+            Storage::disk('public')->delete($news->foto);
+        }
         $news->delete();
         return redirect()->route('admin.news.index')->with('success', 'Berita berhasil dihapus.');
     }
