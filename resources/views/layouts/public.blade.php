@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Desa Sambongrejo') — Kec. Tunjungan, Kab. Blora</title>
     
+    {{-- Google Site Verification --}}
+    <meta name="google-site-verification" content="ULrJ9fnY9qQIP5k9eu7TnpfOCTrQgIhGfj1bAhxoRo0" />
+
     {{-- SEO & Meta Tags --}}
     <meta name="description" content="@yield('meta_description', 'Website resmi Desa Sambongrejo, Kecamatan Tunjungan, Kabupaten Blora, Jawa Tengah. Pusat informasi pelayanan, potensi desa, dan berita terbaru.')">
     <meta name="keywords" content="Desa Sambongrejo, Sambongrejo Tunjungan, Blora, Desa Blora, Website Desa">
