@@ -52,6 +52,8 @@ Route::get('/statistik', [DataDesaPublicController::class, 'statistik'])->name('
 
 Route::get('/kontak', [KontakController::class, 'index'])->name('kontak');
 
+Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');
+
 // ──────────────────────────────────────────────
 //  PANEL ADMIN (prefix: /admin)
 // ──────────────────────────────────────────────

@@ -3,8 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="@yield('meta_description', 'Website resmi Desa Sambongrejo, Kecamatan Tunjungan, Kabupaten Blora, Jawa Tengah.')">
     <title>@yield('title', 'Desa Sambongrejo') — Kec. Tunjungan, Kab. Blora</title>
+    
+    {{-- SEO & Meta Tags --}}
+    <meta name="description" content="@yield('meta_description', 'Website resmi Desa Sambongrejo, Kecamatan Tunjungan, Kabupaten Blora, Jawa Tengah. Pusat informasi pelayanan, potensi desa, dan berita terbaru.')">
+    <meta name="keywords" content="Desa Sambongrejo, Sambongrejo Tunjungan, Blora, Desa Blora, Website Desa">
+    <meta name="author" content="Pemerintah Desa Sambongrejo">
+
+    {{-- Open Graph (WhatsApp, Facebook, dsb) --}}
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('title', 'Desa Sambongrejo — Kec. Tunjungan, Kab. Blora')">
+    <meta property="og:description" content="@yield('meta_description', 'Website resmi Desa Sambongrejo, Kecamatan Tunjungan, Kabupaten Blora, Jawa Tengah.')">
+    <meta property="og:image" content="@yield('meta_image', asset('images/logo-blora.png'))">
+
+    {{-- Twitter Cards --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('title', 'Desa Sambongrejo — Kec. Tunjungan, Kab. Blora')">
+    <meta name="twitter:description" content="@yield('meta_description', 'Website resmi Desa Sambongrejo, Kecamatan Tunjungan, Kabupaten Blora, Jawa Tengah.')">
+    <meta name="twitter:image" content="@yield('meta_image', asset('images/logo-blora.png'))">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 </head>

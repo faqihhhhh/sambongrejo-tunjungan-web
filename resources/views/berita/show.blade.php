@@ -1,6 +1,7 @@
 @extends('layouts.public')
 @section('title', $news->judul . ' — Berita Desa Sambongrejo')
 @section('meta_description', Str::limit(strip_tags($news->isi), 160))
+@section('meta_image', $news->foto ? asset('storage/' . $news->foto) : asset('images/logo-blora.png'))
 
 @section('content')
 <div class="max-w-4xl mx-auto px-4 sm:px-6 py-6 md:py-10">
