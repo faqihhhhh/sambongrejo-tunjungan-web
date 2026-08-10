@@ -54,7 +54,9 @@ class BannerController extends Controller
         ]);
 
         if ($request->hasFile('gambar')) {
-            Storage::disk('public')->delete($banner->gambar);
+            if ($banner->gambar) {
+                Storage::disk('public')->delete($banner->gambar);
+            }
             $validated['gambar'] = $request->file('gambar')->store('banners', 'public');
         }
 
@@ -66,7 +68,9 @@ class BannerController extends Controller
 
     public function destroy(Banner $banner)
     {
-        Storage::disk('public')->delete($banner->gambar);
+        if ($banner->gambar) {
+            Storage::disk('public')->delete($banner->gambar);
+        }
         $banner->delete();
         return redirect()->route('admin.banner.index')->with('success', 'Banner berhasil dihapus.');
     }

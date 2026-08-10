@@ -49,7 +49,9 @@ class LinkTerkaitController extends Controller
         ]);
 
         if ($request->hasFile('logo')) {
-            Storage::disk('public')->delete($linkTerkait->logo);
+            if ($linkTerkait->logo) {
+                Storage::disk('public')->delete($linkTerkait->logo);
+            }
             $validated['logo'] = $request->file('logo')->store('link-terkait', 'public');
         }
 
@@ -59,7 +61,9 @@ class LinkTerkaitController extends Controller
 
     public function destroy(LinkTerkait $linkTerkait)
     {
-        Storage::disk('public')->delete($linkTerkait->logo);
+        if ($linkTerkait->logo) {
+            Storage::disk('public')->delete($linkTerkait->logo);
+        }
         $linkTerkait->delete();
         return redirect()->route('admin.link-terkait.index')->with('success', 'Link berhasil dihapus.');
     }

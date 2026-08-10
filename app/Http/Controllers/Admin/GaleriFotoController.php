@@ -45,7 +45,9 @@ class GaleriFotoController extends Controller
         ]);
 
         if ($request->hasFile('file')) {
-            Storage::disk('public')->delete($galeriFoto->file);
+            if ($galeriFoto->file) {
+                Storage::disk('public')->delete($galeriFoto->file);
+            }
             $validated['file'] = $request->file('file')->store('galeri/foto', 'public');
         }
 
@@ -55,7 +57,9 @@ class GaleriFotoController extends Controller
 
     public function destroy(GaleriFoto $galeriFoto)
     {
-        Storage::disk('public')->delete($galeriFoto->file);
+        if ($galeriFoto->file) {
+            Storage::disk('public')->delete($galeriFoto->file);
+        }
         $galeriFoto->delete();
         return redirect()->route('admin.galeri-foto.index')->with('success', 'Foto berhasil dihapus.');
     }

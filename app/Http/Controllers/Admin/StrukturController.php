@@ -49,7 +49,9 @@ class StrukturController extends Controller
         ]);
 
         if ($request->hasFile('foto')) {
-            Storage::disk('public')->delete($struktur->foto);
+            if ($struktur->foto) {
+                Storage::disk('public')->delete($struktur->foto);
+            }
             $validated['foto'] = $request->file('foto')->store('struktur', 'public');
         }
 
@@ -59,7 +61,9 @@ class StrukturController extends Controller
 
     public function destroy(StrukturPemerintahan $struktur)
     {
-        Storage::disk('public')->delete($struktur->foto);
+        if ($struktur->foto) {
+            Storage::disk('public')->delete($struktur->foto);
+        }
         $struktur->delete();
         return redirect()->route('admin.struktur.index')->with('success', 'Data berhasil dihapus.');
     }

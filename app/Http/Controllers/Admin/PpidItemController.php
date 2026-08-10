@@ -57,7 +57,9 @@ class PpidItemController extends Controller
         ]);
 
         if ($request->hasFile('file')) {
-            Storage::disk('public')->delete($ppid->file);
+            if ($ppid->file) {
+                Storage::disk('public')->delete($ppid->file);
+            }
             $validated['file'] = $request->file('file')->store('ppid', 'public');
         }
 
@@ -67,7 +69,9 @@ class PpidItemController extends Controller
 
     public function destroy(PpidItem $ppid)
     {
-        Storage::disk('public')->delete($ppid->file);
+        if ($ppid->file) {
+            Storage::disk('public')->delete($ppid->file);
+        }
         $ppid->delete();
         return redirect()->route('admin.ppid.index')->with('success', 'Item PPID berhasil dihapus.');
     }

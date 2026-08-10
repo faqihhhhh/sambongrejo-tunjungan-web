@@ -56,7 +56,9 @@ class PotensiDesaController extends Controller
         ]);
 
         if ($request->hasFile('foto')) {
-            Storage::disk('public')->delete($potensi->foto);
+            if ($potensi->foto) {
+                Storage::disk('public')->delete($potensi->foto);
+            }
             $validated['foto'] = $request->file('foto')->store('potensi', 'public');
         }
 
@@ -66,7 +68,9 @@ class PotensiDesaController extends Controller
 
     public function destroy(PotensiDesa $potensi)
     {
-        Storage::disk('public')->delete($potensi->foto);
+        if ($potensi->foto) {
+            Storage::disk('public')->delete($potensi->foto);
+        }
         $potensi->delete();
         return redirect()->route('admin.potensi.index')->with('success', 'Potensi desa berhasil dihapus.');
     }

@@ -47,7 +47,9 @@ class BlangkoController extends Controller
         ]);
 
         if ($request->hasFile('file')) {
-            Storage::disk('public')->delete($blangko->file);
+            if ($blangko->file) {
+                Storage::disk('public')->delete($blangko->file);
+            }
             $uploadedFile = $request->file('file');
             $validated['file'] = $uploadedFile->store('blangko', 'public');
             $validated['ukuran_file'] = round($uploadedFile->getSize() / 1024, 1) . ' KB';
@@ -59,7 +61,9 @@ class BlangkoController extends Controller
 
     public function destroy(Blangko $blangko)
     {
-        Storage::disk('public')->delete($blangko->file);
+        if ($blangko->file) {
+            Storage::disk('public')->delete($blangko->file);
+        }
         $blangko->delete();
         return redirect()->route('admin.blangko.index')->with('success', 'File berhasil dihapus.');
     }

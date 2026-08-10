@@ -56,7 +56,9 @@ class HukumDocumentController extends Controller
         ]);
 
         if ($request->hasFile('file_pdf')) {
-            Storage::disk('public')->delete($hukum->file_pdf);
+            if ($hukum->file_pdf) {
+                Storage::disk('public')->delete($hukum->file_pdf);
+            }
             $validated['file_pdf'] = $request->file('file_pdf')->store('hukum', 'public');
         }
 
@@ -66,7 +68,9 @@ class HukumDocumentController extends Controller
 
     public function destroy(HukumDocument $hukum)
     {
-        Storage::disk('public')->delete($hukum->file_pdf);
+        if ($hukum->file_pdf) {
+            Storage::disk('public')->delete($hukum->file_pdf);
+        }
         $hukum->delete();
         return redirect()->route('admin.hukum.index')->with('success', 'Dokumen berhasil dihapus.');
     }
