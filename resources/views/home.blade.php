@@ -122,7 +122,7 @@
                 <h2 class="section-title mb-0">Kepala Desa Sambongrejo</h2>
                 <span class="section-title-underline"></span>
                 <div class="text-gray-700 leading-relaxed text-base italic border-l-4 border-blora-gold pl-4 py-2 bg-white rounded-r shadow-sm">
-                    <p>"{{ $profile->sambutan_singkat ?? 'Selamat datang di website resmi Desa Sambongrejo. Website ini merupakan sarana informasi dan pelayanan bagi seluruh warga Desa Sambongrejo.' }}"</p>
+                    {!! $profile->sambutan_singkat ?? '<p>Selamat datang di website resmi Desa Sambongrejo. Website ini merupakan sarana informasi dan pelayanan bagi seluruh warga Desa Sambongrejo.</p>' !!}
                 </div>
                 <a href="{{ route('profil') }}" class="btn-secondary mt-4 inline-flex">
                     Baca Selengkapnya
