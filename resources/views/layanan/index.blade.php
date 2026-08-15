@@ -39,7 +39,7 @@
                    style="border-left: 3px solid var(--blora-gold);">
                     <h3 class="font-semibold text-blora-green-dark group-hover:text-blora-green transition-colors">{{ $layanan->judul }}</h3>
                     @if($layanan->deskripsi)
-                    <p class="text-gray-500 text-sm mt-2 line-clamp-2">{{ $layanan->deskripsi }}</p>
+                    <p class="text-gray-500 text-sm mt-2 line-clamp-2">{{ strip_tags($layanan->deskripsi) }}</p>
                     @endif
                     <p class="text-blora-blue text-xs font-semibold mt-3">Lihat syarat →</p>
                 </a>
@@ -55,7 +55,7 @@
             <div class="flex items-start justify-between">
                 <div>
                     <h3 class="font-semibold text-blora-green-dark">{{ $layanan->judul }}</h3>
-                    @if($layanan->deskripsi)<p class="text-gray-500 text-sm mt-1">{{ $layanan->deskripsi }}</p>@endif
+                    @if($layanan->deskripsi)<p class="text-gray-500 text-sm mt-1">{{ strip_tags($layanan->deskripsi) }}</p>@endif
                 </div>
                 <a href="{{ route('layanan.show', $layanan->id) }}" class="btn-primary text-xs py-1.5 px-3 flex-shrink-0 ml-3">Detail</a>
             </div>

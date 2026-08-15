@@ -21,7 +21,7 @@
                     <span>s/d {{ $agenda->tanggal_selesai->translatedFormat('d F Y') }}</span>
                 @endif
             </div>
-            @if($agenda->deskripsi) <p class="text-gray-600 text-sm mt-2">{{ $agenda->deskripsi }}</p> @endif
+            @if($agenda->deskripsi) <div class="prose prose-sm max-w-none text-gray-600 mt-2">{!! $agenda->deskripsi !!}</div> @endif
         </div>
     </div>
     @empty

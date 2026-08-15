@@ -18,7 +18,7 @@
         @if($layanan->deskripsi)
         <div class="mb-6">
             <h2 class="font-serif text-blora-green-dark text-lg font-semibold mb-3">Deskripsi Layanan</h2>
-            <p class="text-gray-700 leading-relaxed">{{ $layanan->deskripsi }}</p>
+            <div class="prose prose-sm max-w-none text-gray-700 leading-relaxed">{!! $layanan->deskripsi !!}</div>
         </div>
         @endif
 

@@ -35,7 +35,7 @@
             <div class="p-4">
                 <h3 class="font-serif text-blora-green-dark font-semibold">{{ $item->judul }}</h3>
                 @if($item->deskripsi)
-                <p class="text-gray-600 text-sm mt-2 leading-relaxed">{{ $item->deskripsi }}</p>
+                <div class="prose prose-sm max-w-none text-gray-600 text-sm mt-2 leading-relaxed">{!! $item->deskripsi !!}</div>
                 @endif
             </div>
         </div>
