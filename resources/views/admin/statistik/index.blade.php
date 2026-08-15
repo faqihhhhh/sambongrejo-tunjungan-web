@@ -9,11 +9,9 @@
             <h2 class="font-semibold text-gray-800">Data Statistik</h2>
             <form action="{{ route('admin.statistik.index') }}" method="GET" class="flex items-center gap-2">
                 <select name="kategori" onchange="this.form.submit()" class="text-sm border-gray-300 rounded-md shadow-sm focus:border-blora-green focus:ring focus:ring-blora-green focus:ring-opacity-50">
-                    <option value="Pendidikan" {{ $kategori == 'Pendidikan' ? 'selected' : '' }}>Pendidikan</option>
-                    <option value="Pekerjaan" {{ $kategori == 'Pekerjaan' ? 'selected' : '' }}>Pekerjaan</option>
-                    <option value="Agama" {{ $kategori == 'Agama' ? 'selected' : '' }}>Agama</option>
-                    <option value="Usia" {{ $kategori == 'Usia' ? 'selected' : '' }}>Usia</option>
-                    <option value="Jenis Kelamin" {{ $kategori == 'Jenis Kelamin' ? 'selected' : '' }}>Jenis Kelamin</option>
+                    @foreach($categories as $cat)
+                        <option value="{{ $cat }}" {{ $kategori == $cat ? 'selected' : '' }}>{{ $cat }}</option>
+                    @endforeach
                 </select>
             </form>
         </div>

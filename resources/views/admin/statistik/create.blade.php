@@ -11,21 +11,31 @@
     <form action="{{ route('admin.statistik.store') }}" method="POST" class="p-4 sm:p-6 space-y-6">
         @csrf
 
+        @php
+            $isCustom = !empty(old('kategori_custom')) || (!in_array($selectedKategori, $categories->toArray()) && !empty($selectedKategori));
+            $currentVal = old('kategori', $selectedKategori);
+        @endphp
+
         <div>
-            <label for="kategori" class="block text-sm font-medium text-gray-700 mb-1">Kategori *</label>
-            <select name="kategori" id="kategori" required class="w-full border-gray-300 rounded-md shadow-sm focus:border-blora-green focus:ring focus:ring-blora-green focus:ring-opacity-50">
-                <option value="Pendidikan" {{ old('kategori', request()->get('kategori')) == 'Pendidikan' ? 'selected' : '' }}>Pendidikan</option>
-                <option value="Pekerjaan" {{ old('kategori', request()->get('kategori')) == 'Pekerjaan' ? 'selected' : '' }}>Pekerjaan</option>
-                <option value="Agama" {{ old('kategori', request()->get('kategori')) == 'Agama' ? 'selected' : '' }}>Agama</option>
-                <option value="Usia" {{ old('kategori', request()->get('kategori')) == 'Usia' ? 'selected' : '' }}>Usia</option>
-                <option value="Jenis Kelamin" {{ old('kategori', request()->get('kategori')) == 'Jenis Kelamin' ? 'selected' : '' }}>Jenis Kelamin</option>
+            <label for="kategori_select" class="block text-sm font-medium text-gray-700 mb-1">Kategori *</label>
+            <select id="kategori_select" onchange="toggleCustomKategori(this.value)" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blora-green focus:ring focus:ring-blora-green focus:ring-opacity-50">
+                @foreach($categories as $cat)
+                    <option value="{{ $cat }}" {{ !$isCustom && $currentVal == $cat ? 'selected' : '' }}>{{ $cat }}</option>
+                @endforeach
+                <option value="__new__" {{ $isCustom ? 'selected' : '' }}>+ Tambah Kategori Baru...</option>
             </select>
+
+            <div id="custom_kategori_wrapper" class="mt-2 {{ $isCustom ? '' : 'hidden' }}">
+                <input type="text" id="kategori_custom" name="kategori_custom" value="{{ old('kategori_custom', $isCustom ? $currentVal : '') }}" placeholder="Ketik nama kategori baru (contoh: Golongan Darah / Dusun)..." class="w-full border-gray-300 rounded-md shadow-sm focus:border-blora-green focus:ring focus:ring-blora-green focus:ring-opacity-50 text-sm">
+            </div>
+
+            <input type="hidden" name="kategori" id="kategori_real" value="{{ $isCustom ? old('kategori_custom', $currentVal) : $currentVal }}">
             @error('kategori') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
         </div>
 
         <div>
             <label for="nama_item" class="block text-sm font-medium text-gray-700 mb-1">Item / Label *</label>
-            <input type="text" name="nama_item" id="nama_item" value="{{ old('nama_item') }}" required placeholder="Contoh: Tamat SD / Petani / Laki-laki" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blora-green focus:ring focus:ring-blora-green focus:ring-opacity-50">
+            <input type="text" name="nama_item" id="nama_item" value="{{ old('nama_item') }}" required placeholder="Contoh: Tamat SD / Petani / Laki-laki / Golongan A" class="w-full border-gray-300 rounded-md shadow-sm focus:border-blora-green focus:ring focus:ring-blora-green focus:ring-opacity-50">
             @error('nama_item') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
         </div>
 
@@ -54,4 +64,27 @@
         </div>
     </form>
 </div>
+
+<script>
+    function toggleCustomKategori(val) {
+        const wrapper = document.getElementById('custom_kategori_wrapper');
+        const customInput = document.getElementById('kategori_custom');
+        const realInput = document.getElementById('kategori_real');
+        
+        if (val === '__new__') {
+            wrapper.classList.remove('hidden');
+            customInput.required = true;
+            realInput.value = customInput.value.trim();
+            customInput.focus();
+        } else {
+            wrapper.classList.add('hidden');
+            customInput.required = false;
+            realInput.value = val;
+        }
+    }
+
+    document.getElementById('kategori_custom')?.addEventListener('input', function() {
+        document.getElementById('kategori_real').value = this.value.trim();
+    });
+</script>
 @endsection

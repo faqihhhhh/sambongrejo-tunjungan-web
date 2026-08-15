@@ -8,16 +8,26 @@ use App\Models\StatistikPenduduk;
 
 class StatistikPendudukController extends Controller
 {
-    public function index(Request $request)
+    private function getCategories()
     {
-        $kategori = $request->query('kategori', 'Pendidikan');
-        $statistik = StatistikPenduduk::where('kategori', $kategori)->orderBy('jumlah', 'desc')->get();
-        return view('admin.statistik.index', compact('statistik', 'kategori'));
+        $default = ['Pendidikan', 'Pekerjaan', 'Agama', 'Usia', 'Jenis Kelamin'];
+        $dbCategories = StatistikPenduduk::distinct()->pluck('kategori')->toArray();
+        return collect(array_values(array_unique(array_merge($default, $dbCategories))));
     }
 
-    public function create()
+    public function index(Request $request)
     {
-        return view('admin.statistik.create');
+        $categories = $this->getCategories();
+        $kategori = $request->query('kategori', $categories->first() ?? 'Pendidikan');
+        $statistik = StatistikPenduduk::where('kategori', $kategori)->orderBy('jumlah', 'desc')->get();
+        return view('admin.statistik.index', compact('statistik', 'kategori', 'categories'));
+    }
+
+    public function create(Request $request)
+    {
+        $categories = $this->getCategories();
+        $selectedKategori = $request->query('kategori', 'Pendidikan');
+        return view('admin.statistik.create', compact('categories', 'selectedKategori'));
     }
 
     public function store(Request $request)
@@ -35,7 +45,9 @@ class StatistikPendudukController extends Controller
 
     public function edit(StatistikPenduduk $statistik)
     {
-        return view('admin.statistik.edit', compact('statistik'));
+        $categories = $this->getCategories();
+        $selectedKategori = $statistik->kategori;
+        return view('admin.statistik.edit', compact('statistik', 'categories', 'selectedKategori'));
     }
 
     public function update(Request $request, StatistikPenduduk $statistik)

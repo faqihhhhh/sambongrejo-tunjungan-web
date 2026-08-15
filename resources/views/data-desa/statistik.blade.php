@@ -14,11 +14,9 @@
             
             <form action="{{ route('statistik') }}" method="GET" class="w-full sm:w-auto">
                 <select name="kategori" onchange="this.form.submit()" class="w-full sm:w-64 border-gray-300 rounded-md shadow-sm focus:border-blora-green focus:ring focus:ring-blora-green focus:ring-opacity-50 text-gray-700">
-                    <option value="Pendidikan" {{ $kategori == 'Pendidikan' ? 'selected' : '' }}>Kategori: Pendidikan</option>
-                    <option value="Pekerjaan" {{ $kategori == 'Pekerjaan' ? 'selected' : '' }}>Kategori: Pekerjaan</option>
-                    <option value="Agama" {{ $kategori == 'Agama' ? 'selected' : '' }}>Kategori: Agama</option>
-                    <option value="Usia" {{ $kategori == 'Usia' ? 'selected' : '' }}>Kategori: Usia</option>
-                    <option value="Jenis Kelamin" {{ $kategori == 'Jenis Kelamin' ? 'selected' : '' }}>Kategori: Jenis Kelamin</option>
+                    @foreach($categories as $cat)
+                        <option value="{{ $cat }}" {{ $kategori == $cat ? 'selected' : '' }}>Kategori: {{ $cat }}</option>
+                    @endforeach
                 </select>
             </form>
         </div>
