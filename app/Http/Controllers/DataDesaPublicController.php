@@ -24,12 +24,16 @@ class DataDesaPublicController extends Controller
 
     public function statistik(Request $request)
     {
-        $default = ['Pendidikan', 'Pekerjaan', 'Agama', 'Usia', 'Jenis Kelamin'];
-        $dbCategories = StatistikPenduduk::distinct()->pluck('kategori')->toArray();
-        $categories = collect(array_values(array_unique(array_merge($default, $dbCategories))));
+        // Hanya tampilkan kategori yang memiliki data di database
+        $categories = StatistikPenduduk::distinct()->pluck('kategori');
 
-        $kategori = $request->query('kategori', 'Pendidikan');
-        $statistik = StatistikPenduduk::where('kategori', $kategori)->orderBy('jumlah', 'desc')->get();
+        // Gunakan kategori pilihan request atau kategori pertama yang tersedia
+        $kategori = $request->query('kategori', $categories->first());
+
+        $statistik = $kategori 
+            ? StatistikPenduduk::where('kategori', $kategori)->orderBy('jumlah', 'desc')->get()
+            : collect();
+
         return view('data-desa.statistik', compact('statistik', 'kategori', 'categories'));
     }
 }

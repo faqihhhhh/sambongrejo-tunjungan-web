@@ -15,7 +15,7 @@
             <form action="{{ route('statistik') }}" method="GET" class="w-full sm:w-auto">
                 <select name="kategori" onchange="this.form.submit()" class="w-full sm:w-64 border-gray-300 rounded-md shadow-sm focus:border-blora-green focus:ring focus:ring-blora-green focus:ring-opacity-50 text-gray-700">
                     @foreach($categories as $cat)
-                        <option value="{{ $cat }}" {{ $kategori == $cat ? 'selected' : '' }}>Kategori: {{ $cat }}</option>
+                        <option value="{{ $cat }}" {{ $kategori == $cat ? 'selected' : '' }}>{{ $cat }}</option>
                     @endforeach
                 </select>
             </form>
