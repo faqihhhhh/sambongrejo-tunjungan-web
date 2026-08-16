@@ -35,7 +35,7 @@
         </button>
 
         {{-- Dots --}}
-        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+        <div class="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-2 z-10">
             @foreach($banners as $i => $banner)
             <button onclick="goToSlide({{ $i }})"
                     class="slider-dot w-2.5 h-2.5 rounded-full bg-white/50 transition-all {{ $i === 0 ? 'bg-blora-gold w-6' : '' }}"></button>
@@ -56,34 +56,55 @@
 </section>
 
 {{-- ═════════════════════════════════════════ --}}
-{{-- QUICK ACCESS                              --}}
+{{-- MENU UTAMA (4 Poin)                       --}}
 {{-- ═════════════════════════════════════════ --}}
-<section class="bg-blora-green py-0">
-    <div class="max-w-7xl mx-auto px-4">
-        <div class="grid grid-cols-3 sm:grid-cols-6 gap-0 divide-x divide-green-700">
+<section class="relative z-20 -mt-12 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             @php
-                $quickLinks = [
-                    ['href' => route('layanan'),              'label' => 'Layanan',
-                     'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>'],
-                    ['href' => route('hukum'),                'label' => 'Produk Hukum',
-                     'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>'],
-                    ['href' => route('ppid'),                 'label' => 'PPID',
-                     'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>'],
-                    ['href' => route('galeri'),               'label' => 'Galeri',
-                     'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>'],
-                    ['href' => route('unduhan'),              'label' => 'Unduhan',
-                     'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>'],
-                    ['href' => route('potensi.show', 'umkm'), 'label' => 'Potensi',
-                     'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>'],
+                $quickAccess = [
+                    [
+                        'href' => route('layanan'),
+                        'label' => 'Layanan',
+                        'desc' => 'KTP, KK, SKCK, dll',
+                        'color' => 'from-emerald-500 to-emerald-700',
+                        'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>'
+                    ],
+                    [
+                        'href' => route('ppid'),
+                        'label' => 'Data & Transparansi',
+                        'desc' => 'Produk Hukum, PPID, Unduhan',
+                        'color' => 'from-blue-500 to-blue-700',
+                        'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />'
+                    ],
+                    [
+                        'href' => route('potensi.show', 'umkm'),
+                        'label' => 'Potensi Desa',
+                        'desc' => 'UMKM, Wisata, dll',
+                        'color' => 'from-amber-500 to-amber-700',
+                        'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>'
+                    ],
+                    [
+                        'href' => route('galeri'),
+                        'label' => 'Galeri',
+                        'desc' => 'Foto & Video',
+                        'color' => 'from-purple-500 to-purple-700',
+                        'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>'
+                    ],
                 ];
             @endphp
-            @foreach($quickLinks as $link)
-            <a href="{{ $link['href'] }}"
-               class="flex flex-col items-center justify-center py-3 px-2 text-white hover:bg-blora-green-dark transition-colors text-center group">
-                <svg class="w-5 h-5 mb-1 text-green-200 group-hover:text-blora-gold transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    {!! $link['icon'] !!}
-                </svg>
-                <span class="text-xs font-semibold text-green-100 group-hover:text-blora-gold transition-colors">{{ $link['label'] }}</span>
+
+            @foreach($quickAccess as $item)
+            <a href="{{ $item['href'] }}" 
+               class="group relative overflow-hidden rounded-2xl bg-white shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.16)] transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 p-5 sm:p-6 flex flex-col items-center text-center z-10">
+                <div class="absolute inset-0 bg-gradient-to-br {{ $item['color'] }} opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
+                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br {{ $item['color'] }} text-white flex items-center justify-center mb-3 sm:mb-4 shadow-md group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        {!! $item['icon'] !!}
+                    </svg>
+                </div>
+                <h3 class="font-bold text-gray-800 text-base sm:text-lg mb-1 group-hover:text-gray-900 transition-colors relative z-10">{{ $item['label'] }}</h3>
+                <p class="text-xs text-gray-500 line-clamp-2 relative z-10">{{ $item['desc'] }}</p>
             </a>
             @endforeach
         </div>
@@ -248,53 +269,7 @@
 </section>
 @endif
 
-{{-- ═════════════════════════════════════════ --}}
-{{-- AKSES CEPAT (Bottom)                     --}}
-{{-- ═════════════════════════════════════════ --}}
-<section class="py-12 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <div class="text-center mb-8">
-            <h2 class="section-title inline-block">Layanan & Informasi</h2>
-            <div class="section-title-underline mx-auto"></div>
-        </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-            @php
-                $tiles = [
-                    ['href' => route('layanan'),              'label' => 'Layanan Desa',  'desc' => 'KTP, KK, SKCK, dll',
-                     'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>'],
-                    ['href' => route('hukum'),                'label' => 'Produk Hukum',  'desc' => 'Perdes, SK Kades',
-                     'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>'],
-                    ['href' => route('ppid'),                 'label' => 'PPID',           'desc' => 'Informasi Publik',
-                     'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>'],
-                    ['href' => route('potensi.show', 'umkm'), 'label' => 'Potensi Desa',  'desc' => 'UMKM, Wisata, dll',
-                     'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>'],
-                    ['href' => route('galeri'),               'label' => 'Galeri',         'desc' => 'Foto & Video',
-                     'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>'],
-                    ['href' => route('unduhan'),              'label' => 'Unduhan',        'desc' => 'Blangko & Formulir',
-                     'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>'],
-                    ['href' => route('agenda'),               'label' => 'Agenda',         'desc' => 'Kegiatan Desa',
-                     'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>'],
-                    ['href' => route('kontak'),               'label' => 'Kontak',         'desc' => 'Hubungi Kami',
-                     'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>'],
-                ];
-            @endphp
-
-            @foreach($tiles as $tile)
-            <a href="{{ $tile['href'] }}"
-               class="flex flex-col items-center text-center p-5 rounded-lg border border-gray-200 bg-white hover:border-blora-green-dark hover:shadow-sm transition-all duration-200 group">
-                <div class="w-10 h-10 rounded-lg bg-gray-100 group-hover:bg-blora-green-dark flex items-center justify-center mb-3 transition-colors duration-200">
-                    <svg class="w-5 h-5 text-gray-500 group-hover:text-white transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        {!! $tile['icon'] !!}
-                    </svg>
-                </div>
-                <span class="font-semibold text-blora-green-dark text-sm">{{ $tile['label'] }}</span>
-                <span class="text-gray-400 text-xs mt-0.5">{{ $tile['desc'] }}</span>
-            </a>
-            @endforeach
-        </div>
-    </div>
-</section>
 
 @endsection
 
