@@ -66,29 +66,29 @@
                     [
                         'href' => route('layanan'),
                         'label' => 'Layanan',
-                        'desc' => 'KTP, KK, SKCK, dll',
-                        'color' => 'from-emerald-500 to-emerald-700',
+                        'desc' => 'KTP, KK, SKCK',
+                        'color' => 'bg-blora-green',
                         'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>'
                     ],
                     [
                         'href' => route('ppid'),
-                        'label' => 'Data & Transparansi',
-                        'desc' => 'Produk Hukum, PPID, Unduhan',
-                        'color' => 'from-blue-500 to-blue-700',
+                        'label' => 'Data',
+                        'desc' => 'Informasi Publik',
+                        'color' => 'bg-blora-blue',
                         'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />'
                     ],
                     [
                         'href' => route('potensi.show', 'umkm'),
-                        'label' => 'Potensi Desa',
-                        'desc' => 'UMKM, Wisata, dll',
-                        'color' => 'from-amber-500 to-amber-700',
+                        'label' => 'Potensi',
+                        'desc' => 'UMKM, Wisata',
+                        'color' => 'bg-blora-gold',
                         'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>'
                     ],
                     [
                         'href' => route('galeri'),
                         'label' => 'Galeri',
                         'desc' => 'Foto & Video',
-                        'color' => 'from-purple-500 to-purple-700',
+                        'color' => 'bg-blora-red',
                         'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>'
                     ],
                 ];
@@ -97,13 +97,12 @@
             @foreach($quickAccess as $item)
             <a href="{{ $item['href'] }}" 
                class="group relative overflow-hidden rounded-2xl bg-white shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.16)] transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 p-5 sm:p-6 flex flex-col items-center text-center z-10">
-                <div class="absolute inset-0 bg-gradient-to-br {{ $item['color'] }} opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
-                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br {{ $item['color'] }} text-white flex items-center justify-center mb-3 sm:mb-4 shadow-md group-hover:scale-110 transition-transform duration-300">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl {{ $item['color'] }} text-white flex items-center justify-center mb-3 sm:mb-4 shadow-md group-hover:scale-110 transition-transform duration-300">
                     <svg class="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         {!! $item['icon'] !!}
                     </svg>
                 </div>
-                <h3 class="font-bold text-gray-800 text-base sm:text-lg mb-1 group-hover:text-gray-900 transition-colors relative z-10">{{ $item['label'] }}</h3>
+                <h3 class="font-bold text-gray-800 text-base sm:text-lg mb-1 group-hover:text-blora-green-dark transition-colors relative z-10">{{ $item['label'] }}</h3>
                 <p class="text-xs text-gray-500 line-clamp-2 relative z-10">{{ $item['desc'] }}</p>
             </a>
             @endforeach
