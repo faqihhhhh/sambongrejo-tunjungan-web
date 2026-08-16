@@ -59,8 +59,8 @@
 {{-- MENU UTAMA (4 Poin)                       --}}
 {{-- ═════════════════════════════════════════ --}}
 <section class="bg-blora-green py-0">
-    <div class="max-w-7xl mx-auto px-4">
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-0 divide-x divide-y sm:divide-y-0 divide-green-700 border-x border-b sm:border-b-0 border-green-700">
+    <div class="max-w-7xl mx-auto px-1 sm:px-4">
+        <div class="grid grid-cols-4 gap-0 divide-x divide-green-700 border-x border-green-700">
             @php
                 $quickAccess = [
                     [
@@ -92,12 +92,12 @@
 
             @foreach($quickAccess as $item)
             <a href="{{ $item['href'] }}" 
-               class="flex flex-col items-center justify-center py-4 px-2 text-white hover:bg-blora-green-dark transition-colors text-center group">
-                <svg class="w-6 h-6 sm:w-8 sm:h-8 mb-1 sm:mb-2 text-green-200 group-hover:text-blora-gold transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+               class="flex flex-col items-center justify-center py-2 sm:py-4 px-1 sm:px-2 text-white hover:bg-blora-green-dark transition-colors text-center group">
+                <svg class="w-5 h-5 sm:w-8 sm:h-8 mb-1 sm:mb-2 text-green-200 group-hover:text-blora-gold transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     {!! $item['icon'] !!}
                 </svg>
-                <span class="text-xs sm:text-sm font-semibold text-green-100 group-hover:text-blora-gold transition-colors">{{ $item['label'] }}</span>
-                <span class="text-[10px] sm:text-xs text-green-200 group-hover:text-blora-gold opacity-80 mt-0.5">{{ $item['desc'] }}</span>
+                <span class="text-[9px] sm:text-sm font-semibold text-green-100 group-hover:text-blora-gold transition-colors leading-tight">{{ $item['label'] }}</span>
+                <span class="text-[8px] sm:text-xs text-green-200 group-hover:text-blora-gold opacity-80 mt-0.5 hidden sm:block">{{ $item['desc'] }}</span>
             </a>
             @endforeach
         </div>
